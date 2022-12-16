@@ -27,6 +27,13 @@
     .hh{
       position: relative;
     }
+    .height{
+      height: 150px;
+    }
+    .hh:hover{
+      transition: 300ms;
+      transform: scale(0.95);
+    }
     .free{
       border: 1px solid rgb(10, 9, 9);
       background-color: black;

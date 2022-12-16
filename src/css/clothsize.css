@@ -53,3 +53,7 @@ label{
     flex-direction: column;
     justify-content: center;
 }
+.ss:hover{
+    transition: 200ms;
+    transform: scale(1.1);
+}

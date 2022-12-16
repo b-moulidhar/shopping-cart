@@ -21,7 +21,7 @@
                 <div class="cart_products">
                     <div v-if="cartItems[0]==null">Add some products in the cart</div>
                      <!-- loop through all the products available in the card of store -->
-                    <div v-else  v-for="(products,key) in this.$store.state.card" :key="key" class="cart_items">
+                    <div v-else  v-for="(products,key) in cartItems" :key="key" class="cart_items">
                         <div> 
                             <img v-bind:src="products.image" alt="">
                         </div>
@@ -29,13 +29,13 @@
                             <h2>{{products.style}}</h2>
                             <p>{{products.title}}</p>
                             <p>Quantity:{{this.$store.state.qty[key]}}</p>
-                        </div>`
+                        </div>
                         <div class="cart_content2">
                             <button><span class="remove" @click="removedata(key)">X</span></button>
                             <p>${{products.price}}</p>
                             <div class="quantity">
-                                    <button v-if="number>0" @click="decrement(key)">-</button>
-                                    <button @click="increment(key)">+</button>
+                                    <button class="decrements" @click="decrement(key)">-</button>
+                                    <button class="increments" @click="increment(key)">+</button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <p>Subtotal</p>
                         <p> ${{prices.subtotal.toFixed(2)}} </p>
                     </div>
-                     <button class="w-100 btn btn-dark btn-lg" type="submit" @click="persist" @mousedown="quantity"> checkout</button>
+                     <button class="w-100 btn btn-dark btn-lg" type="submit" @click="persist" @mousedown="quantity">checkout</button>
                 </div>
             </div>
         </div>
@@ -57,13 +57,12 @@
 </nav>
 </template>
 <script>
-// import '../css/header.css'
+import '../css/header.css'
 export default{
     name:'CartComp',
     data(){
         return{
             cartItems : this.$store.state.card, //assign the items of global store card
-            number:1,   //minimum number of quantity in cart
             name:[],    //array to store product details in localstorage
             qnty:[]     //array to store Quantity in localstorage
         }
@@ -76,16 +75,16 @@ export default{
             this.qnty = localStorage.qnty;
     },
     methods:{
-         //open the cart in a sliding manner when called
+        //open the cart in a sliding manner when called
         openNav() {
             document.getElementById("mySidenav").style.width = "450px";
             if(screen.width < 667){
                 document.getElementById("mySidenav").style.width = "350px";
-                document.getElementById("mySidenav").style.fontSize.h1 = "10px";
             }
-            },
+        },
         //close the cart in a sliding manner when called
         closeNav() {
+
             document.getElementById("mySidenav").style.width = "0";
         },
         //when called sets the product details to localstorage
@@ -102,7 +101,7 @@ export default{
              this.$store.state.card.splice(key,1)
              this.$store.state.qty.splice(key,1)
              localStorage.name = JSON.stringify(this.$store.state.card)
-             localStorage.name = JSON.stringify(this.$store.state.qty)
+             localStorage.qnty = JSON.stringify(this.$store.state.qty)
         },
         //increase the quantity in cart
         increment(key){
@@ -110,7 +109,7 @@ export default{
         },
         //decrease the quantity in cart
         decrement(key){
-            if(this.$store.state.qty[key]>0){
+            if(this.$store.state.qty[key]>1){
 
                 return this.$store.state.qty[key]-- 
             }
@@ -119,10 +118,10 @@ export default{
         computed:{
         //calcluate the total price of products in the cart
           prices: function(){
-            var price=0
-            var cards = this.$store.state.card
-            var qty = this.$store.state.qty
-        for(var i=0;i<cards.length;i++){
+            let price=0
+            let cards = this.$store.state.card
+            let qty = this.$store.state.qty
+        for(let i=0;i<cards.length;i++){
             price+=cards[i].price*qty[i]                     //add all the prices multiplied with quantity, present in the cart 
             }
         return  {

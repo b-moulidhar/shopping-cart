@@ -68,7 +68,7 @@
         "isFreeShipping": true,
         "price": 10.9,
         "sku": 12064273040195392,
-        "style": "Really Cool T-shirt",
+        "style": "Really T-shirt",
         "title": "Black Batman T-shirt",
         "image":"https://alphagammabeta.000webhostapp.com/images/image5-removebg-preview.png"
 
@@ -113,7 +113,7 @@
         "isFreeShipping": true,
         "price": 10.9,
         "sku": 18644119330491310,
-        "style": "White T-shirt",
+        "style": "White Tshirt",
         "title": "Ringer Hall Pass",
         "image":"https://alphagammabeta.000webhostapp.com/images/image8-removebg-preview.png"
       },
@@ -127,7 +127,7 @@
         "isFreeShipping": true,
         "price": 14.9,
         "sku": 11854078013954528,
-        "style": "You will like this one",
+        "style": "Grey T-shirt",
         "title": "Grey T-shirt",
         "image":"https://alphagammabeta.000webhostapp.com/images/image9-removebg-preview.png"
 
@@ -157,8 +157,8 @@
         "isFreeShipping": false,
         "price": 10.9,
         "sku": 10547961582846888,
-        "style": "Cowabunga!",
-        "title": "Turtles Ninja T-shirt",
+        "style": "Turtles Tshirt",
+        "title": "Turtles T-shirt",
         "image":"https://alphagammabeta.000webhostapp.com/images/image11-removebg-preview.png"
 
       },
@@ -172,7 +172,7 @@
         "isFreeShipping": true,
         "price": 49.9,
         "sku": 6090484789343891,
-        "style": "When you wish well",
+        "style": "Slim T-shirt",
         "title": "Slim black T-shirt",
         "image":"https://alphagammabeta.000webhostapp.com/images/image12-removebg-preview.png"
 
@@ -187,7 +187,7 @@
         "isFreeShipping": true,
         "price": 22.5,
         "sku": 18532669286405344,
-        "style": "Very comfy",
+        "style": "Blue-Sweatshirt",
         "title": "Blue Sweatshirt",
         "image":"https://alphagammabeta.000webhostapp.com/images/image13-removebg-preview.png"
 

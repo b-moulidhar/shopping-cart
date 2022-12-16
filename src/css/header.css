@@ -28,7 +28,7 @@ background-color: #c67605;
 #lblCartCount {
 font-size: 16px;
 position: relative;
-background: #ffb703 !important;
+background: #ffb703 ;
 color: rgb(10, 9, 9);
 padding: 0 12px;
 vertical-align: bottom;
@@ -67,6 +67,10 @@ gap: 0rem;
 .cart_qty img{
 filter: invert(1);
 cursor: pointer;
+}
+.cart_qty:hover{
+    transition: 200ms;
+    transform: scale(1.1);
 }
 
 .cart_in_qty img{
@@ -222,6 +226,7 @@ background-color:  #111;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    color: aliceblue;
 }
 
 .cart_header{

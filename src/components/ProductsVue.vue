@@ -1,13 +1,12 @@
 <template>
   <div>
-    <!-- <button class="hellllo">clicked</button> -->
+   
   <div class="col-xxl-3 col-xl-2 col-lg-2 col-md-3 col-sm-1 sizediv">
     <!-- displaying Cloths sizes -->
     <ClothesSize v-on:sizes="sizes($event)" v-on:filter="filtering"/>
   </div>
    <!-- displaying the products if no filter applied -->
   <div v-if="productFilter.length==0" class="col-xxl-9 col-xl-10 col-lg-10 col-md-9 col-sm-11 container">
-    <!-- <h1 class="product_found">{{this.products.length}} product(s) found</h1> -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div class="col-xxl-3 col-sm-6 col-md-4 col-6 hh" v-for="user in products" :key="user.id">
         <div class="card shadow-sm">
@@ -15,10 +14,10 @@
             <img class="models" v-bind:src="user.image" alt="image1"/>
             <p v-if="user.isFreeShipping" class="free">free shipping</p>
           </div>
-          <div class="card-body">
-            <p class="card-text"  style="direction: ltr; text-align: center;">
+          <div class="card-body height">
+            <p class="card-text" style="direction: ltr; text-align: center;">
               {{user.style}}</p>
-            <p class="line_after"  style="direction: ltr; text-align: center; font-weight:bold">
+            <p class="line_after" style="direction: ltr; text-align: center; font-weight:bold">
               {{"$"+user.price}}</p>  
             <p class="installments" style="direction: ltr; text-align: center;">
                 {{"or "+user.installments + " x" +( user.price/user.installments).toFixed(2)}}</p>
@@ -27,7 +26,7 @@
             </div>
           </div>
              <!-- emitting product details and quantity -->
-          <button id="testing1" type="button" class="btn btn-dark" @click="$emit('addtocart',user)" @mouseup="$emit('qty',quantity)" @mousedown="$emit('persist',quantity)" @mouseleave="$emit('quantity',quantity)">Add to Cart</button>
+          <button type="button" class="btn btn-dark button2" @click="$emit('addtocart',user)" @mouseup="$emit('qty',quantity)" @mousedown="$emit('persist',quantity)" @mouseleave="$emit('quantity',quantity)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -42,19 +41,19 @@
               <img class="models" v-bind:src="user.image" alt="image1"/>
               <p v-if="user.isFreeShipping" class="free">free shipping</p>
             </div>
-            <div class="card-body">
-              <p class="card-text" _msthash="1937507" _msttexthash="9192963" style="direction: ltr; text-align: center;">
+            <div class="card-body height">
+              <p class="card-text" style="direction: ltr; text-align: center;">
                 {{user.style}}</p>
-              <p class="line_after" _msthash="1937507" _msttexthash="9192963" style="direction: ltr; text-align: center; font-weight:bold">
+              <p class="line_after" style="direction: ltr; text-align: center; font-weight:bold">
                 {{"$"+user.price}}</p>  
-              <p class="installments" _msthash="1937507" _msttexthash="9192963" style="direction: ltr; text-align: center;">
+              <p class="installments" style="direction: ltr; text-align: center;">
                   {{"or "+user.installments + " x" +( user.price/user.installments).toFixed(2)}}</p>
                   
               <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
              <!-- emitting product details and quantity -->
-            <button id="testing" type="button" class="btn btn-dark button1" @click="$emit('addtocart',user)" @mouseup="$emit('qty',quantity)" @mousedown="$emit('persist',quantity)" @mouseleave="$emit('quantity',quantity)">Add to Cart</button>
+            <button type="button" class="btn btn-dark button1" @click="$emit('addtocart',user)" @mouseup="$emit('qty',quantity)">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -63,7 +62,7 @@
 </template>
 
 <script>
-// import '../css/products.css'
+import '../css/products.css'
 import ClothesSize from './ClothesSize.vue';
 export default {
   name:"ProductsApp",
@@ -72,7 +71,8 @@ data() {
     quantity:1,                   //to maintain minimum quantity of one when added to cart and emitting the same
     products : this.product,      //all details of product from store
     productFilter:[],             //filtered products are added here after filteration
-    selectedSizes:[],             //sizes gets added here(selectedSizes) on click of the sizes
+    selectedSizes:[],
+    count:0             //sizes gets added here(selectedSizes) on click of the sizes
   };
 },
 props: ['product'],
@@ -81,7 +81,7 @@ components:{
 },
 methods:{
 // filtering of products based on the sizes in selectedSizes
-  filtering(){
+filtering(){
     let temp =[]                                            //storing the filtered value
     this.productFilter=temp
     this.products.filter((val)=>{                           //filter the products available in products array
@@ -90,7 +90,7 @@ methods:{
              if(selectedSize===sizes){
                temp.forEach((val1,idx)=>{
                  if(val.id===val1.id){
-                   temp.splice(idx,1)                       //if size already present remove the item from temp array
+                   temp.splice(idx,1)                       //if product already present remove the item from temp array
                             }
                           })
                           temp.push(val)                    //push if not present
